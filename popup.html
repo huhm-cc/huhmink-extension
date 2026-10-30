@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HuhmINK 縮址助手</title>
+<link rel="stylesheet" href="popup.css" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+</head>
+<body>
+<div class="app">
+  <header class="head">
+    <span class="logo">Huhm<em>INK</em><i class="dot"></i></span>
+    <a class="settings-link" id="openOptions" href="options.html" title="設定">⚙</a>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab active" data-tab="url" role="tab" aria-selected="true">🔗 網址</button>
+    <button class="tab" data-tab="text" role="tab" aria-selected="false">📝 文字</button>
+    <button class="tab" data-tab="file" role="tab" aria-selected="false">📦 檔案</button>
+  </div>
+
+  <!-- 網址 -->
+  <section class="panel" data-panel="url">
+    <label class="label" for="urlInput">貼上網址，馬上縮短</label>
+    <input class="input" id="urlInput" type="url" placeholder="https://example.com/very/long/url……" autocomplete="off" />
+    <button class="btn tiny" id="useCurrent" type="button">🌐 用目前頁面</button>
+  </section>
+
+  <!-- 文字 -->
+  <section class="panel hidden" data-panel="text">
+    <label class="label" for="textInput">要分享的文字</label>
+    <textarea class="input" id="textInput" rows="5" placeholder="筆記、訊息、程式碼……"></textarea>
+    <div class="char-count" id="charCount">0 / 100,000 字</div>
+  </section>
+
+  <!-- 檔案 -->
+  <section class="panel hidden" data-panel="file">
+    <label class="label">選擇檔案（圖片 / 影片 / 任何檔案，最大 30MB）</label>
+    <div class="dropzone" id="dropzone" tabindex="0" role="button">
+      <span class="dropzone-icon">⬆</span>
+      <strong>拖放檔案到此，或點擊選擇</strong>
+      <span class="dropzone-hint">單檔上限 30MB</span>
+      <input class="hidden" type="file" id="fileInput" />
+    </div>
+    <div class="file-chip hidden" id="fileChip">
+      <span class="file-chip-icon">📄</span>
+      <span class="file-chip-info">
+        <strong id="fileName"></strong>
+        <span id="fileSize"></span>
+      </span>
+      <button type="button" class="file-chip-remove" id="fileRemove" aria-label="移除檔案">✕</button>
+    </div>
+  </section>
+
+  <div class="options">
+    <label class="toggle"><input type="checkbox" id="usePassword" /><span class="box"></span>密碼保護</label>
+    <label class="toggle nsfw"><input type="checkbox" id="nsfw" /><span class="box"></span>18+ 內容</label>
+  </div>
+  <div class="suboption hidden" id="passwordRow">
+    <input class="input" type="password" id="password" placeholder="設定存取密碼（4–72 字）" maxlength="72" />
+  </div>
+
+  <div class="progress hidden" id="progressBar"><span id="progressFill"></span></div>
+
+  <button class="btn submit" id="submit" type="button">縮成連結</button>
+  <div class="form-error hidden" id="error"></div>
+
+  <section class="result hidden" id="result">
+    <div class="result-head">
+      <span class="result-label">你的短網址</span>
+      <div class="badges" id="badges"></div>
+    </div>
+    <div class="result-url" id="resultUrl"></div>
+    <div class="result-actions">
+      <button class="btn primary" id="copyBtn" type="button">複製</button>
+      <a class="btn ghost" id="openBtn" target="_blank" rel="noopener noreferrer">開啟</a>
+      <button class="btn ghost" id="qrBtn" type="button">QR</button>
+    </div>
+    <div class="qr-panel hidden" id="qrPanel"></div>
+  </section>
+</div>
+<script src="qrcode-lib.js"></script>
+<script src="shared.js"></script>
+<script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>HuhmINK 縮址助手 — 設定</title>
+<link rel="stylesheet" href="popup.css" />
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet" />
+<style>
+  body { background: #fafafa; }
+  .wrap { max-width: 480px; margin: 0 auto; padding: 40px 20px 60px; }
+  h1 { font-size: 20px; font-weight: 700; color: #09090b; margin: 0 0 6px; letter-spacing: -0.015em; }
+  .sub { font-size: 14px; color: #6f6f76; margin: 0 0 26px; line-height: 1.6; }
+  .card { background: #fff; border: 1px solid #e4e4e7; border-radius: 14px; padding: 22px; margin-bottom: 16px; }
+  .card h2 { font-size: 15px; font-weight: 600; color: #09090b; margin: 0 0 14px; }
+  .field { margin-bottom: 14px; }
+  .field:last-child { margin-bottom: 0; }
+  .actions { display: flex; gap: 10px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="head">
+    <span class="logo">Huhm<em>INK</em><i class="dot"></i></span>
+  </header>
+  <h1>縮址助手設定</h1>
+  <p class="sub">除非你自架了 HuhmINK，這些都不用改。</p>
+
+  <div class="card">
+    <h2>連線</h2>
+    <div class="field">
+      <label class="label" for="apiBase">主網站（API 端點）</label>
+      <input class="input" id="apiBase" type="url" placeholder="https://l.huhm.cc" />
+    </div>
+    <div class="field">
+      <label class="label" for="shortBase">短網址網域（產生的連結）</label>
+      <input class="input" id="shortBase" type="url" placeholder="https://huhm.cc" />
+    </div>
+    <div class="actions">
+      <button class="btn primary" id="save" type="button" style="flex:1">儲存設定</button>
+      <button class="btn ghost" id="reset" type="button">回復預設</button>
+    </div>
+    <div id="saved" class="form-error hidden" style="color:#09090b;">✓ 設定已儲存</div>
+  </div>
+
+  <div class="card">
+    <h2>關於</h2>
+    <p style="font-size:13.5px;color:#6f6f76;margin:0;line-height:1.7;">
+      程式碼開源在 GitHub：<a href="https://github.com/huhm-cc/huhmink-extension" target="_blank" rel="noopener" style="color:#e5484d;">huhm-cc/huhmink-extension</a><br />
+      主網站：<a href="https://l.huhm.cc" target="_blank" rel="noopener" style="color:#e5484d;">l.huhm.cc</a>
+    </p>
+  </div>
+</div>
+<script src="options.js"></script>
+</body>
+</html>

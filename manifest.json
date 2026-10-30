@@ -1,0 +1,27 @@
+{
+  "manifest_version": 3,
+  "name": "HuhmINK 縮址助手",
+  "version": "1.0.0",
+  "description": "把網址、文字、圖片、影片、檔案縮成 huhm.cc 短連結，支援密碼保護與 18+ 標記。",
+  "permissions": ["storage", "activeTab", "contextMenus", "notifications", "clipboardWrite"],
+  "host_permissions": [
+    "https://l.huhm.cc/*",
+    "https://huhm.cc/*",
+    "https://vercel.com/api/blob/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "background": { "service_worker": "background.js" },
+  "options_page": "options.html",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
