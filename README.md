@@ -12,9 +12,19 @@ Chrome / Edge 擴充功能：**在任何網頁上一鍵把網址、文字、圖�
 - 🖱 **右鍵選單** — 縮短網頁 / 連結 / 圖片 / 分享選取文字，完成後自動複製短網址
 - ⚙️ **可自訂** — 主網站與短網址網域都可以在設定頁改
 
-## 安裝（載入未封裝擴充功能）
+## 安裝
 
-Chrome / Edge 都能用：
+### 方式一：一鍵安裝（推薦）
+
+1. 到 [l.huhm.cc](https://l.huhm.cc) 下載 **HuhmINK-Install.reg**（或 <https://l.huhm.cc/extension/HuhmINK-Install.reg>）
+2. **雙擊**下載的 `.reg`，按「是」
+3. **重新啟動 Chrome / Edge** — 擴充功能自動安裝完成（不需要開發人員模式、不需按任何按鈕）
+
+> 原理：Chrome/Edge 的企業原則 `ExtensionInstallForcelist`（寫在使用者層級，不需管理員權限）
+> 指向更新清單 <https://l.huhm.cc/extension/update.xml>，由它下載簽署好的 `huhmink.crx`。
+> 要移除：雙擊 [uninstall.reg](https://l.huhm.cc/extension/uninstall.reg) 即可。
+
+### 方式二：手動安裝
 
 1. 下載本 repo（Code → Download ZIP）並解壓縮
 2. 網址列輸入 `chrome://extensions`（Edge 是 `edge://extensions`）
@@ -51,12 +61,22 @@ huhmink-extension/
 
 （這三個步驟在任何網頁/擴充功能都能跑 — 網站 API 已開放 CORS。）
 
-### 打包成 ZIP 上架
+### 打包與發佈（維護者）
+
+自動安裝版本的 CRX 與更新清單放在 `dist/`。要重新打包：
 
 ```bash
-# 排除清單內容後壓縮（含 manifest.json 的資料夾即可）
-zip -r huhmink-extension.zip . -x "README.md" "*.md"
+# 需要 Node.js；首次會自動產生簽署金鑰 key.pem（請妥善保管並保密，
+# 遺失會導致擴充功能 ID 改變，已安裝的使用者需要重新執行一次 .reg）
+npm install crx@5
+node pack.js   # 產出 dist/huhmink.crx + dist/update.xml
 ```
+
+`dist/update.xml` 裡的 codebase 指向 <https://l.huhm.cc/extension/huhmink.crx>，
+主網站把 `dist/` 的 crx 與 update.xml 放進 `public/extension/` 就會跟著部署。
+使用者層級的安裝原則由 `HuhmINK-Install.reg`（內容見主網站下載的檔案）寫入。
+
+## 授權
 
 ## 授權
 
